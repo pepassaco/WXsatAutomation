@@ -128,6 +128,18 @@ blocks:
     coordinate: [912, 132]
     rotation: 0
     state: enabled
+- name: f_real
+  id: variable
+  parameters:
+    comment: ''
+    value: fcd_freq
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [173, 1031]
+    rotation: 0
+    state: true
 - name: fcd_freq
   id: variable_qtgui_chooser
   parameters:
@@ -252,6 +264,28 @@ blocks:
     coordinate: [568, 12]
     rotation: 0
     state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: fcd_freq-f_real
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [112, 859]
+    rotation: 0
+    state: true
 - name: analog_wfm_rcv_0_0
   id: analog_wfm_rcv
   parameters:
@@ -366,6 +400,24 @@ blocks:
     coordinate: [2152, 428]
     rotation: 0
     state: enabled
+- name: blocks_multiply_xx_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [69, 612]
+    rotation: 0
+    state: true
 - name: blocks_wavfile_sink_0_0
   id: blocks_wavfile_sink
   parameters:
@@ -400,6 +452,38 @@ blocks:
     coordinate: [2544, 500]
     rotation: 0
     state: enabled
+- name: gpredict_MsgPairToVar_0
+  id: gpredict_MsgPairToVar
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    target: f_real
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [748, 998]
+    rotation: 0
+    state: true
+- name: gpredict_doppler_0
+  id: gpredict_doppler
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gpredict_host: 127.0.0.1
+    gpredict_port: '7356'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [436, 987]
+    rotation: 0
+    state: true
 - name: hilbert_fc_0_0
   id: hilbert_fc
   parameters:
@@ -1008,7 +1092,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [216, 612]
+    coordinate: [225, 616]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0_0_0
@@ -1138,6 +1222,7 @@ blocks:
     state: enabled
 
 connections:
+- [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
 - [analog_wfm_rcv_0_0, '0', band_pass_filter_0, '0']
 - [band_pass_filter_0, '0', blocks_wavfile_sink_0_0, '0']
 - [band_pass_filter_0, '0', hilbert_fc_0_0, '0']
@@ -1148,6 +1233,8 @@ connections:
 - [blocks_keep_one_in_n_0_0, '0', qtgui_time_sink_x_1_0, '0']
 - [blocks_moving_average_xx_0_0, '0', rational_resampler_xxx_0_0_0, '0']
 - [blocks_multiply_const_vxx_0_0, '0', blocks_keep_one_in_n_0_0, '0']
+- [blocks_multiply_xx_0, '0', rational_resampler_xxx_0, '0']
+- [gpredict_doppler_0, freq, gpredict_MsgPairToVar_0, inpair]
 - [hilbert_fc_0_0, '0', blocks_complex_to_mag_0_0, '0']
 - [low_pass_filter_0_0, '0', blocks_multiply_const_vxx_0_0, '0']
 - [low_pass_filter_1_0, '0', analog_wfm_rcv_0_0, '0']
@@ -1156,7 +1243,7 @@ connections:
 - [low_pass_filter_1_0, '0', qtgui_waterfall_sink_x_0_0, '0']
 - [rational_resampler_xxx_0, '0', low_pass_filter_1_0, '0']
 - [rational_resampler_xxx_0_0_0, '0', low_pass_filter_0_0, '0']
-- [soapy_source_0, '0', rational_resampler_xxx_0, '0']
+- [soapy_source_0, '0', blocks_multiply_xx_0, '0']
 
 metadata:
   file_format: 1
