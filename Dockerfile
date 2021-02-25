@@ -114,16 +114,53 @@ WORKDIR $HOME
 
 # Doppler
 
-RUN git clone https://github.com/ghostop14/gr-gpredict-doppler.git
-WORKDIR gr-gpredict-doppler
-RUN git checkout maint-3.8
-#RUN perl -i -p -e 's/Gnuradio "3.9"/Gnuradio "3.8"/g' CMakeLists.txt
+#RUN git clone https://github.com/ghostop14/gr-gpredict-doppler.git
+#WORKDIR gr-gpredict-doppler
+#RUN git checkout maint-3.8
+##RUN perl -i -p -e 's/Gnuradio "3.9"/Gnuradio "3.8"/g' CMakeLists.txt
+#RUN mkdir build
+#WORKDIR build
+#RUN cmake ..
+#RUN make -j $(nproc --all)
+#RUN make install
+#RUN ldconfig
+#WORKDIR $HOME
+
+RUN pip3 install chardet2
+
+WORKDIR $HOME
+RUN git clone git://github.com/urllib3/urllib3.git
+WORKDIR urllib3
+RUN git checkout 1.26.3
+RUN python3 setup.py install
+
+WORKDIR $HOME
+RUN git clone git://github.com/certifi/python-certifi.git
+WORKDIR python-certifi
+RUN git checkout v1.0.1
+RUN python3 setup.py install
+
+WORKDIR $HOME
+#RUN pip3 install chardet2 urllib3
+RUN git clone https://github.com/psf/requests.git
+WORKDIR requests
+RUN git checkout  v2.25.1
+RUN python3 setup.py install
+
+
+WORKDIR $HOME
+#RUN python3.6 -m pip install requests chardet2 urllib3
+RUN pip3 install orbit-predictor
+RUN git clone https://github.com/acien101/gr-doppler.git
+WORKDIR gr-doppler
+#RUN git checkout 
 RUN mkdir build
 WORKDIR build
-RUN cmake ..
-RUN make -j $(nproc --all)
+RUN cmake ../
+RUN make -j4
 RUN make install
 RUN ldconfig
+
 WORKDIR $HOME
 
 # Pulseaudio dependency to run alongside x11docker
