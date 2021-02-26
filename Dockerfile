@@ -146,6 +146,7 @@ RUN git clone https://github.com/psf/requests.git
 WORKDIR requests
 RUN git checkout  v2.25.1
 RUN python3 setup.py install
+WORKDIR $HOME
 
 
 WORKDIR $HOME

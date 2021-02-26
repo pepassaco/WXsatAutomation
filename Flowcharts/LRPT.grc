@@ -129,7 +129,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: freq
+    value: '1'
   states:
     bus_sink: false
     bus_source: false
@@ -451,7 +451,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: freq-f_real
+    freq: freq*(1-f_real)
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -463,7 +463,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [433, 239]
+    coordinate: [463, 236]
     rotation: 180
     state: true
 - name: blocks_file_sink_0
@@ -499,7 +499,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [498, 426]
+    coordinate: [337, 125]
     rotation: 0
     state: true
 - name: blocks_float_to_char_0
@@ -588,7 +588,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [334, 390]
+    coordinate: [346, 405]
     rotation: 270
     state: true
 - name: blocks_null_sink_0
@@ -619,12 +619,12 @@ blocks:
     modulus: '1'
     mu: eqGain
     num_taps: '16'
-    sps: '2'
+    sps: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1140, 500]
+    coordinate: [1149, 505]
     rotation: 0
     state: enabled
 - name: digital_constellation_soft_decoder_cf_1
@@ -675,7 +675,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     nfilters: filterSize
-    osps: '2'
+    osps: '1'
     pfb_mf_taps: rrc_taps
     resamp_type: digital.IR_PFB_NO_MF
     sps: sps
@@ -686,7 +686,43 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [495, 548]
+    coordinate: [761, 487]
+    rotation: 0
+    state: true
+- name: doppler_MsgPairToVar_0
+  id: doppler_MsgPairToVar
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    target: f_real
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1413, 789]
+    rotation: 0
+    state: true
+- name: doppler_doppler_0
+  id: doppler_doppler
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gnd_alt: '666'
+    gnd_lat: '40.4167'
+    gnd_lon: '-3.70325'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    refresh_period: '0.1'
+    sat_id: ISS
+    tle_file: ''
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [985, 790]
     rotation: 0
     state: true
 - name: freq_xlating_fir_filter_xxx_0
@@ -707,38 +743,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [225, 663]
-    rotation: 0
-    state: true
-- name: gpredict_MsgPairToVar_0
-  id: gpredict_MsgPairToVar
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    target: f_real
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1320, 754]
-    rotation: 0
-    state: true
-- name: gpredict_doppler_0
-  id: gpredict_doppler
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    gpredict_host: 127.0.0.1
-    gpredict_port: '7356'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    verbose: 'False'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1046, 791]
     rotation: 0
     state: true
 - name: import_0
@@ -1129,14 +1133,14 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     ntaps: '64'
-    samp_rate: symb_rate*2
+    samp_rate: samp_rate
     sym_rate: symb_rate
     type: fir_filter_ccf
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [885, 559]
+    coordinate: [457, 555]
     rotation: 0
     state: enabled
 - name: soapy_source_0
@@ -1258,15 +1262,15 @@ connections:
 - [blocks_multiply_const_vxx_1_0, '0', digital_constellation_soft_decoder_cf_1, '0']
 - [blocks_multiply_const_vxx_1_0, '0', qtgui_const_sink_x_1, '0']
 - [blocks_multiply_xx_0, '0', analog_agc_xx_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_file_sink_2, '0']
 - [digital_cma_equalizer_cc_0, '0', blocks_multiply_const_vxx_0, '0']
 - [digital_constellation_soft_decoder_cf_1, '0', blocks_multiply_const_vxx_1, '0']
 - [digital_costas_loop_cc_1_0_1, '0', blocks_multiply_const_vxx_1_0, '0']
-- [digital_symbol_sync_xx_0_0_0, '0', root_raised_cosine_filter_0_0, '0']
-- [freq_xlating_fir_filter_xxx_0, '0', digital_symbol_sync_xx_0_0_0, '0']
+- [digital_symbol_sync_xx_0_0_0, '0', digital_cma_equalizer_cc_0, '0']
+- [doppler_doppler_0, dop_factor, doppler_MsgPairToVar_0, inpair]
 - [freq_xlating_fir_filter_xxx_0, '0', qtgui_freq_sink_x_0, '0']
-- [gpredict_doppler_0, freq, gpredict_MsgPairToVar_0, inpair]
-- [root_raised_cosine_filter_0_0, '0', digital_cma_equalizer_cc_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', root_raised_cosine_filter_0_0, '0']
+- [root_raised_cosine_filter_0_0, '0', digital_symbol_sync_xx_0_0_0, '0']
+- [soapy_source_0, '0', blocks_file_sink_2, '0']
 - [soapy_source_0, '0', blocks_multiply_xx_0, '0']
 
 metadata:
