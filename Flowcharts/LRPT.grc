@@ -8,7 +8,7 @@ options:
     description: v4
     gen_cmake: 'On'
     gen_linking: dynamic
-    generate_options: qt_gui
+    generate_options: no_gui
     hier_block_src_path: '.:'
     id: WXsat_LRPT
     max_nouts: '0'
@@ -41,90 +41,21 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [547, 1074]
+    coordinate: [683, 970]
     rotation: 0
     state: enabled
-- name: bitstream_name
+- name: debug
   id: variable
   parameters:
     comment: ''
-    value: '"/src/Resultados/Meteor_"+ datetime.now().strftime("%d%m%Y_%H%M") + ".s"'
+    value: '"/src/Resultados/Meteor/Meteor_d"+ datetime.now().strftime("%d%m%Y_%H%M")+"_D"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [146, 1139]
+    coordinate: [145, 1201]
     rotation: 0
     state: enabled
-- name: debug_1
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Pruebas/sinEQ.s"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [145, 1280]
-    rotation: 0
-    state: enabled
-- name: debug_2
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Pruebas/conEQ.s"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [337, 1283]
-    rotation: 0
-    state: enabled
-- name: decim
-  id: variable
-  parameters:
-    comment: ''
-    value: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [550, 1212]
-    rotation: 180
-    state: enabled
-- name: eqGain
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tabs@1
-    label: CMA Equalizer Gain
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.0001'
-    stop: '0.02'
-    value: '0.008'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1228, 991]
-    rotation: 0
-    state: enabled
-- name: f_offset
-  id: variable
-  parameters:
-    comment: ''
-    value: 200e3
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [543, 1141]
-    rotation: 0
-    state: true
 - name: f_real
   id: variable
   parameters:
@@ -134,106 +65,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 1142]
-    rotation: 0
-    state: true
-- name: filterSize
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tabs@1
-    label: Gardner's Loop MMSE Filter Size
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '4'
-    step: '4'
-    stop: '128'
-    value: '8'
-    widget: slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1063, 990]
-    rotation: 0
-    state: true
-- name: freq
-  id: variable
-  parameters:
-    comment: ''
-    value: '137100000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [544, 996]
-    rotation: 0
-    state: enabled
-- name: gain
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tabs@0
-    label: RF Gain
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '1'
-    step: '1'
-    stop: '40'
-    value: '30'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1080, 1119]
-    rotation: 0
-    state: true
-- name: interp
-  id: variable
-  parameters:
-    comment: ''
-    value: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [660, 1211]
-    rotation: 0
-    state: true
-- name: loopBW
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tabs@1
-    label: Gardner's Loop BW
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '0.001'
-    step: '0.001'
-    stop: '0.5'
-    value: 6.28/80
-    widget: slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [896, 1118]
-    rotation: 0
-    state: true
-- name: lp_corte
-  id: variable
-  parameters:
-    comment: ''
-    value: 60e3
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1217, 1152]
+    coordinate: [764, 969]
     rotation: 0
     state: true
 - name: lp_taps
@@ -250,54 +82,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [969, 1270]
+    coordinate: [679, 1180]
     rotation: 0
     state: true
-- name: pll_alpha
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: tabs@1
-    label: Costas Loop Bandwidth
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.0005'
-    stop: '0.030'
-    value: '0.015'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [885, 989]
-    rotation: 0
-    state: true
-- name: raw_file
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Meteor/Meteor_"+ datetime.now().strftime("%d%m%Y_%H%M")+"_R"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [338, 1142]
-    rotation: 0
-    state: enabled
-- name: raw_file_d
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Meteor/Meteor_d"+ datetime.now().strftime("%d%m%Y_%H%M")+"_D"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [141, 1210]
-    rotation: 0
-    state: enabled
 - name: rrc_taps
   id: variable
   parameters:
@@ -308,79 +95,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1144, 1302]
-    rotation: 0
-    state: true
-- name: ruta_bien
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Pruebas/Buena.raw"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [148, 992]
-    rotation: 0
-    state: true
-- name: ruta_dec
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Pruebas/Decente.raw"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [344, 994]
-    rotation: 0
-    state: true
-- name: ruta_mal
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Pruebas/Mala.raw"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [144, 1067]
-    rotation: 0
-    state: true
-- name: ruta_res
-  id: variable
-  parameters:
-    comment: ''
-    value: '"/src/Resultados/Meteor/1_D"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [341, 1068]
+    coordinate: [679, 1115]
     rotation: 0
     state: true
 - name: samp_rate
   id: variable
   parameters:
     comment: ''
-    value: samp_rate_airspy/decim*interp
+    value: samp_rate_airspy/decim
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [654, 1282]
-    rotation: 0
-    state: enabled
-- name: samp_rate_airspy
-  id: variable
-  parameters:
-    comment: ''
-    value: '768000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [634, 1073]
+    coordinate: [765, 1046]
     rotation: 0
     state: enabled
 - name: sps
@@ -392,19 +119,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [540, 1284]
-    rotation: 0
-    state: enabled
-- name: symb_rate
-  id: variable
-  parameters:
-    comment: ''
-    value: '72000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [653, 995]
+    coordinate: [668, 1046]
     rotation: 0
     state: enabled
 - name: analog_agc_xx_0
@@ -466,6 +181,23 @@ blocks:
     coordinate: [463, 236]
     rotation: 180
     state: true
+- name: arg_airspy
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: "Par\xE1metros de conexi\xF3n del soapySDR"
+    short_id: ''
+    type: str
+    value: '"remote=192.168.0.10:55132, remote:driver=airspyhf"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [145, 970]
+    rotation: 0
+    state: true
 - name: blocks_file_sink_0
   id: blocks_file_sink
   parameters:
@@ -473,7 +205,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: debug_2
+    file: salida
     type: byte
     unbuffered: 'False'
     vlen: '1'
@@ -491,7 +223,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: raw_file_d
+    file: debug
     type: complex
     unbuffered: 'False'
     vlen: '1'
@@ -499,9 +231,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [337, 125]
+    coordinate: [382, 114]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_float_to_char_0
   id: blocks_float_to_char
   parameters:
@@ -608,6 +340,23 @@ blocks:
     coordinate: [737, 87]
     rotation: 180
     state: disabled
+- name: decim
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Factor de diezmado
+    short_id: ''
+    type: eng_float
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [501, 1175]
+    rotation: 0
+    state: true
 - name: digital_cma_equalizer_cc_0
   id: digital_cma_equalizer_cc
   parameters:
@@ -700,7 +449,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1413, 789]
+    coordinate: [1508, 832]
     rotation: 0
     state: true
 - name: doppler_doppler_0
@@ -716,13 +465,81 @@ blocks:
     minoutbuf: '0'
     refresh_period: '0.1'
     sat_id: ISS
-    tle_file: ''
+    tle_file: /src/sample_file
     verbose: 'False'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [985, 790]
+    coordinate: [1027, 742]
+    rotation: 0
+    state: true
+- name: eqGain
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Ganancia del ecualizador CMA
+    short_id: ''
+    type: ''
+    value: '0.008'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 994]
+    rotation: 0
+    state: true
+- name: f_offset
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: "Offset entre frecuencia de sintonizador y frecuencia de sat\xE9ltie"
+    short_id: ''
+    type: eng_float
+    value: '200000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [497, 1074]
+    rotation: 0
+    state: true
+- name: filterSize
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: "Tama\xF1o del banco de filtros del lazo de Gardner"
+    short_id: ''
+    type: eng_float
+    value: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1058, 1077]
+    rotation: 0
+    state: true
+- name: freq
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Frecuencia
+    short_id: ''
+    type: eng_float
+    value: '137100000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [361, 961]
     rotation: 0
     state: true
 - name: freq_xlating_fir_filter_xxx_0
@@ -732,7 +549,7 @@ blocks:
     alias: ''
     center_freq: -f_offset
     comment: ''
-    decim: '1'
+    decim: decim
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate_airspy
@@ -745,6 +562,23 @@ blocks:
     coordinate: [225, 663]
     rotation: 0
     state: true
+- name: gain
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Ganancia de RF del SDR
+    short_id: ''
+    type: ''
+    value: '30'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1057, 1188]
+    rotation: 0
+    state: true
 - name: import_0
   id: import
   parameters:
@@ -755,7 +589,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 1219]
+    coordinate: [364, 1178]
     rotation: 0
     state: enabled
 - name: import_1
@@ -768,7 +602,58 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [327, 1219]
+    coordinate: [378, 1226]
+    rotation: 0
+    state: true
+- name: loopBW
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Ancho de banda del lazo de Gardner
+    short_id: ''
+    type: ''
+    value: '0.0785'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [879, 1190]
+    rotation: 0
+    state: true
+- name: lp_corte
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Frecuencia de corte del filtro paso bajo
+    short_id: ''
+    type: eng_float
+    value: '60000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1059, 975]
+    rotation: 0
+    state: true
+- name: pll_alpha
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Ancho de banda del Bucle de Costas
+    short_id: ''
+    type: ''
+    value: '0.02'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 1082]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_1
@@ -862,7 +747,7 @@ blocks:
     bus_structure: null
     coordinate: [1828, 106]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -942,7 +827,7 @@ blocks:
     bus_structure: null
     coordinate: [523, 760]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_freq_sink_x_0_0
   id: qtgui_freq_sink_x
   parameters:
@@ -1022,7 +907,7 @@ blocks:
     bus_structure: null
     coordinate: [228, 788]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_0_1
   id: qtgui_time_sink_x
   parameters:
@@ -1143,6 +1028,40 @@ blocks:
     coordinate: [457, 555]
     rotation: 0
     state: enabled
+- name: salida
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Fichero de salida
+    short_id: ''
+    type: str
+    value: '"/src/Resultados/Pruebas/conEQ.s"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [147, 1076]
+    rotation: 0
+    state: true
+- name: samp_rate_airspy
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Tasa de muestreo
+    short_id: ''
+    type: eng_float
+    value: '768000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [351, 1074]
+    rotation: 0
+    state: true
 - name: soapy_source_0
   id: soapy_source
   parameters:
@@ -1153,7 +1072,7 @@ blocks:
     amp_gain0: '0'
     ant0: antenna
     ant1: RX2
-    args: '"remote=192.168.0.10:55132, remote:driver=airspyhf"'
+    args: arg_airspy
     balance0: '0'
     balance1: '0'
     bw0: '0'
@@ -1214,6 +1133,23 @@ blocks:
     coordinate: [85, 219]
     rotation: 0
     state: true
+- name: symb_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: "Tasa de s\xEDmbolos"
+    short_id: ''
+    type: eng_float
+    value: '72000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [478, 960]
+    rotation: 0
+    state: true
 - name: tabs
   id: qtgui_tab_widget
   parameters:
@@ -1245,9 +1181,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1394, 994]
+    coordinate: [507, 1274]
     rotation: 0
-    state: true
+    state: disabled
 
 connections:
 - [analog_agc_xx_0, '0', freq_xlating_fir_filter_xxx_0, '0']
